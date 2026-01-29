@@ -31,24 +31,26 @@ const SummaryEditor = ({ data, onChange }) => {
     if (!showSection) {
         return (
             <div className="text-center py-8">
-                <p className="text-gray-500 mb-4">Summary section is hidden</p>
-                <button onClick={handleAdd} className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Add Summary Section</button>
+                <p className="text-gray-400 mb-4">Summary section is hidden</p>
+                <button onClick={handleAdd} className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors">Add Summary Section</button>
             </div>
         )
     }
 
     return (
         <div>
-            <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-semibold">Professional Summary</h3>
+            <div className="flex justify-between items-center mb-4 pr-4">
+                <h3 className="text-lg font-semibold text-white">Professional Summary</h3>
                 <div className="flex space-x-2">
                     <button onClick={handleAIClick} className="text-xs bg-linear-to-r from-purple-600 to-blue-600 text-white px-3 py-1 rounded hover:from-purple-700 hover:to-blue-700 transition">
                         ✨ Use AI
                     </button>
-                    <button onClick={handleDelete} className="px-3 py-1 bg-red-600 text-white rounded text-sm hover:bg-red-700">Delete Section</button>
+                    <button onClick={handleDelete} className="px-3 py-1 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition-colors">Delete Section</button>
                 </div>
             </div>
-            <textarea value={data} onChange={(e) => onChange(e.target.value)} rows="4" className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Write a brief summary..." />
+            <div className="pr-4">
+                <textarea value={data} onChange={(e) => onChange(e.target.value)} rows="4" className="w-full bg-[#1a1a1a] border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none" placeholder="Write a brief summary..." />
+            </div>
 
             <AIModal
                 isOpen={aiModalOpen}

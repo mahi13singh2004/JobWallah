@@ -33,40 +33,40 @@ const ExperienceEditor = ({ data, onChange }) => {
     }
 
     return (
-        <div>
-            <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-semibold">Work Experience</h3>
-                <button onClick={addExperience} className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700">+ Add</button>
+        <div className="h-full">
+            <div className="flex justify-between items-center mb-6 pr-4">
+                <h3 className="text-lg font-semibold text-white">Work Experience</h3>
+                <button onClick={addExperience} className="px-4 py-2 bg-green-600 text-white rounded text-sm hover:bg-green-700 transition-colors">+ Add</button>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-8 pb-8 pr-4">
                 {data.map((exp, index) => (
-                    <div key={index} className="border rounded-lg p-4">
-                        <div className="flex justify-between items-start mb-3">
-                            <h4 className="font-medium">Experience {index + 1}</h4>
-                            <button onClick={() => removeExperience(index)} className="text-red-600 hover:text-red-800 text-sm">Remove</button>
+                    <div key={index} className="bg-[#1a1a1a] border border-gray-600 rounded-lg p-6">
+                        <div className="flex justify-between items-start mb-5">
+                            <h4 className="font-medium text-white text-lg">Experience {index + 1}</h4>
+                            <button onClick={() => removeExperience(index)} className="text-red-400 hover:text-red-300 text-sm transition-colors">Remove</button>
                         </div>
-                        <div className="space-y-3">
-                            <input type="text" placeholder="Job Title" value={exp.role} onChange={(e) => updateExperience(index, 'role', e.target.value)} className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                            <input type="text" placeholder="Company" value={exp.company} onChange={(e) => updateExperience(index, 'company', e.target.value)} className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                            <input type="text" placeholder="Location" value={exp.location} onChange={(e) => updateExperience(index, 'location', e.target.value)} className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                            <div className="grid grid-cols-2 gap-3">
-                                <input type="text" placeholder="Start Date" value={exp.startDate} onChange={(e) => updateExperience(index, 'startDate', e.target.value)} className="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                                <input type="text" placeholder="End Date" value={exp.endDate} onChange={(e) => updateExperience(index, 'endDate', e.target.value)} className="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                        <div className="space-y-5">
+                            <input type="text" placeholder="Job Title" value={exp.role} onChange={(e) => updateExperience(index, 'role', e.target.value)} className="w-full bg-[#0a0a0a] border border-gray-500 rounded px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" />
+                            <input type="text" placeholder="Company" value={exp.company} onChange={(e) => updateExperience(index, 'company', e.target.value)} className="w-full bg-[#0a0a0a] border border-gray-500 rounded px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" />
+                            <input type="text" placeholder="Location" value={exp.location} onChange={(e) => updateExperience(index, 'location', e.target.value)} className="w-full bg-[#0a0a0a] border border-gray-500 rounded px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" />
+                            <div className="grid grid-cols-2 gap-4">
+                                <input type="text" placeholder="Start Date" value={exp.startDate} onChange={(e) => updateExperience(index, 'startDate', e.target.value)} className="bg-[#0a0a0a] border border-gray-500 rounded px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" />
+                                <input type="text" placeholder="End Date" value={exp.endDate} onChange={(e) => updateExperience(index, 'endDate', e.target.value)} className="bg-[#0a0a0a] border border-gray-500 rounded px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" />
                             </div>
                             <div>
-                                <div className="flex justify-between items-center mb-2">
-                                    <label className="block text-sm font-medium">Responsibilities</label>
+                                <div className="flex justify-between items-center mb-4">
+                                    <label className="block text-sm font-medium text-gray-300">Responsibilities</label>
                                     <button onClick={() => handleAIClick(index)} className="text-xs bg-linear-to-r from-purple-600 to-blue-600 text-white px-3 py-1 rounded hover:from-purple-700 hover:to-blue-700 transition">
                                         ✨ Use AI
                                     </button>
                                 </div>
                                 {exp.bullets.map((bullet, bulletIndex) => (
-                                    <div key={bulletIndex} className="flex mb-2">
-                                        <textarea placeholder={`Responsibility ${bulletIndex + 1}`} value={bullet} onChange={(e) => updateBullet(index, bulletIndex, e.target.value)} className="flex-1 border rounded px-3 py-2 mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500" rows="2" />
-                                        <button onClick={() => removeBullet(index, bulletIndex)} className="text-red-600 hover:text-red-800 px-2">×</button>
+                                    <div key={bulletIndex} className="flex mb-4">
+                                        <textarea placeholder={`Responsibility ${bulletIndex + 1}`} value={bullet} onChange={(e) => updateBullet(index, bulletIndex, e.target.value)} className="flex-1 bg-[#0a0a0a] border border-gray-500 rounded px-4 py-3 mr-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none" rows="3" />
+                                        <button onClick={() => removeBullet(index, bulletIndex)} className="text-red-400 hover:text-red-300 px-2 transition-colors text-lg">×</button>
                                     </div>
                                 ))}
-                                <button onClick={() => addBullet(index)} className="text-blue-600 hover:text-blue-800 text-sm">+ Add Responsibility</button>
+                                <button onClick={() => addBullet(index)} className="text-green-400 hover:text-green-300 text-sm transition-colors">+ Add Responsibility</button>
                             </div>
                         </div>
                     </div>

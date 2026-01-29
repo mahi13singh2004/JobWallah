@@ -20,26 +20,26 @@ const AchievementsEditor = ({ data, onChange }) => {
     if (!showSection) {
         return (
             <div className="text-center py-8">
-                <p className="text-gray-500 mb-4">Achievements section is hidden</p>
-                <button onClick={handleAdd} className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Add Achievements Section</button>
+                <p className="text-gray-400 mb-4">Achievements section is hidden</p>
+                <button onClick={handleAdd} className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors">Add Achievements Section</button>
             </div>
         )
     }
 
     return (
         <div>
-            <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-semibold">Achievements</h3>
+            <div className="flex justify-between items-center mb-4 pr-4">
+                <h3 className="text-lg font-semibold text-white">Achievements</h3>
                 <div className="flex space-x-2">
-                    <button onClick={addAchievement} className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700">+ Add</button>
-                    <button onClick={handleDelete} className="px-3 py-1 bg-red-600 text-white rounded text-sm hover:bg-red-700">Delete Section</button>
+                    <button onClick={addAchievement} className="px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700 transition-colors">+ Add</button>
+                    <button onClick={handleDelete} className="px-3 py-1 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition-colors">Delete Section</button>
                 </div>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-3 pr-4">
                 {data.map((achievement, index) => (
                     <div key={index} className="flex">
-                        <textarea placeholder={`Achievement ${index + 1}`} value={achievement} onChange={(e) => updateAchievement(index, e.target.value)} className="flex-1 border rounded px-3 py-2 mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500" rows="2" />
-                        <button onClick={() => removeAchievement(index)} className="text-red-600 hover:text-red-800 px-2">×</button>
+                        <textarea placeholder={`Achievement ${index + 1}`} value={achievement} onChange={(e) => updateAchievement(index, e.target.value)} className="flex-1 bg-[#1a1a1a] border border-gray-600 rounded px-3 py-2 mr-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none" rows="2" />
+                        <button onClick={() => removeAchievement(index)} className="text-red-400 hover:text-red-300 px-2 transition-colors">×</button>
                     </div>
                 ))}
             </div>

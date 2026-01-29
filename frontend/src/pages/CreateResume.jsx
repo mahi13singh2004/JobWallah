@@ -154,47 +154,69 @@ const Resume = () => {
     ]
 
     return (
-        <div className="h-screen flex flex-col bg-gray-50">
-            <div className="bg-white shadow border-b px-6 py-3 shrink-0">
+        <div className="h-screen flex flex-col bg-[#0a0a0a] text-white">
+            <div className="bg-[#0a0a0a] border-b-2 border-white px-6 py-4 shrink-0">
                 <div className="flex justify-between items-center">
                     <div className="flex items-center space-x-3">
-                        <button onClick={handleBack} className="text-gray-600 hover:text-gray-800">
+                        <button onClick={handleBack} className="text-gray-400 hover:text-white transition-colors">
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                             </svg>
                         </button>
-                        <h1 className="text-lg font-semibold">{currentResumeId ? 'Edit Resume' : 'Create Resume'}</h1>
+                        <h1 className="text-xl font-semibold text-white">
+                            {currentResumeId ? '✏️ Edit Resume' : '📝 Create Resume'}
+                        </h1>
                     </div>
-                    <div className="flex space-x-2">
-                        <button onClick={handleSave} className="bg-green-600 text-white px-4 py-1.5 rounded text-sm hover:bg-green-700">{currentResumeId ? 'Update' : 'Save'}</button>
-                        <button onClick={handleDownload} className="bg-blue-600 text-white px-4 py-1.5 rounded text-sm hover:bg-blue-700">Download PDF</button>
+                    <div className="flex space-x-3">
+                        <button
+                            onClick={handleSave}
+                            className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors"
+                        >
+                            {currentResumeId ? 'Update' : 'Save'}
+                        </button>
+                        <button
+                            onClick={handleDownload}
+                            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors"
+                        >
+                            Download PDF
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <div className="flex flex-1 overflow-hidden">
+            <div className="flex flex-1 h-full">
                 <ResumePreview resumeData={resumeData} />
 
-                <div className="w-1/2 bg-white border-l overflow-hidden flex flex-col">
-                    <div className="sticky top-0 bg-white z-10 p-4 border-b shadow-sm">
-                        <div className="grid grid-cols-2 gap-2">
+                <div className="w-2/5 bg-[#0a0a0a] border-l border-gray-800 flex flex-col h-full">
+                    <div className="bg-[#0a0a0a] p-6 border-b border-gray-800">
+                        <div className="grid grid-cols-2 gap-3">
                             {sections.map(section => (
-                                <button key={section.key} onClick={() => setActiveSection(section.key)} className={`flex items-center justify-center p-2.5 rounded-lg text-sm font-medium transition ${activeSection === section.key ? 'bg-blue-600 text-white shadow' : 'bg-gray-100 hover:bg-gray-200'}`}>
-                                    <span className="mr-1.5">{section.icon}</span><span>{section.label}</span>
+                                <button
+                                    key={section.key}
+                                    onClick={() => setActiveSection(section.key)}
+                                    className={`flex items-center justify-center p-4 rounded-lg text-sm font-medium transition-all duration-200 ${activeSection === section.key
+                                        ? 'bg-green-600 text-white shadow-lg'
+                                        : 'bg-[#1a1a1a] hover:bg-[#2a2a2a] text-gray-300 hover:text-white'
+                                        }`}
+                                >
+                                    <span className="mr-2">{section.icon}</span>
+                                    <span>{section.label}</span>
                                 </button>
                             ))}
                         </div>
                     </div>
 
-                    <div className="flex-1 overflow-y-auto p-6">
-                        <div className="max-w-2xl mx-auto">
-                            {activeSection === 'basic' && <BasicDetailsEditor data={resumeData.personalInfo} onChange={(data) => updateResumeData('personalInfo', data)} />}
-                            {activeSection === 'summary' && <SummaryEditor data={resumeData.summary} onChange={(data) => updateResumeData('summary', data)} />}
-                            {activeSection === 'education' && <EducationEditor data={resumeData.education} onChange={(data) => updateResumeData('education', data)} />}
-                            {activeSection === 'experience' && <ExperienceEditor data={resumeData.experience} onChange={(data) => updateResumeData('experience', data)} />}
-                            {activeSection === 'projects' && <ProjectsEditor data={resumeData.projects} onChange={(data) => updateResumeData('projects', data)} />}
-                            {activeSection === 'skills' && <SkillsEditor data={resumeData.skills} onChange={(data) => updateResumeData('skills', data)} />}
-                            {activeSection === 'achievements' && <AchievementsEditor data={resumeData.achievements} onChange={(data) => updateResumeData('achievements', data)} />}
+                    <div className="flex-1 p-8 h-full overflow-hidden bg-[#0a0a0a]">
+                        <div className="max-w-2xl mx-auto h-full pr-4">
+                            <div className="h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800 pr-2">
+                                {activeSection === 'basic' && <BasicDetailsEditor data={resumeData.personalInfo} onChange={(data) => updateResumeData('personalInfo', data)} />}
+                                {activeSection === 'summary' && <SummaryEditor data={resumeData.summary} onChange={(data) => updateResumeData('summary', data)} />}
+                                {activeSection === 'education' && <EducationEditor data={resumeData.education} onChange={(data) => updateResumeData('education', data)} />}
+                                {activeSection === 'experience' && <ExperienceEditor data={resumeData.experience} onChange={(data) => updateResumeData('experience', data)} />}
+                                {activeSection === 'projects' && <ProjectsEditor data={resumeData.projects} onChange={(data) => updateResumeData('projects', data)} />}
+                                {activeSection === 'skills' && <SkillsEditor data={resumeData.skills} onChange={(data) => updateResumeData('skills', data)} />}
+                                {activeSection === 'achievements' && <AchievementsEditor data={resumeData.achievements} onChange={(data) => updateResumeData('achievements', data)} />}
+                            </div>
                         </div>
                     </div>
                 </div>

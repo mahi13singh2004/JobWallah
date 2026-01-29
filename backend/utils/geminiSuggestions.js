@@ -33,7 +33,7 @@ Return ONLY the ${numberOfPoints} bullet points, one per line, without bullet sy
 
 export const improveSummary = async (content) => {
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" })
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" })
 
         const prompt = `You are a professional resume writer. Improve the following professional summary to make it more impactful, concise, and ATS-friendly. Keep it to 2-3 sentences maximum. Focus on skills, experience, and value proposition.
 

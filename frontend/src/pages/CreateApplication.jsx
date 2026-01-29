@@ -21,29 +21,29 @@ const CreateApplication = () => {
     }
 
     return (
-        <div className="min-h-screen bg-linear-to-br from-slate-900 via-purple-900 to-slate-900 p-6">
+        <div className="min-h-screen bg-[#0a0a0a] pt-4 pb-8 px-4 sm:p-6">
             <div className="max-w-2xl mx-auto">
-                <div className="mb-8">
+                <div className="mb-6 lg:mb-8">
                     <Link
                         to="/applications"
-                        className="text-purple-400 hover:text-purple-300 transition-colors duration-200 text-sm font-medium mb-4 inline-block"
+                        className="text-green-400 hover:text-green-300 transition-colors duration-200 text-sm font-medium mb-4 inline-block"
                     >
                         ← Back to Applications
                     </Link>
-                    <h1 className="text-3xl font-bold text-white">Add New Application</h1>
+                    <h1 className="text-2xl sm:text-3xl font-bold text-white">Add New Application</h1>
                 </div>
 
-                <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-8 shadow-2xl">
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-[#1a1a1a] border border-gray-700 rounded-lg p-4 sm:p-6 lg:p-8">
+                    <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                             <div>
-                                <label className="block text-sm font-medium text-gray-200 mb-2">
+                                <label className="block text-sm font-medium text-gray-300 mb-2">
                                     Company *
                                 </label>
                                 <input
                                     type="text"
                                     required
-                                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                                    className="w-full px-4 py-3 bg-[#0a0a0a] border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                                     placeholder="e.g. Google, Microsoft"
                                     value={form.company}
                                     onChange={(e) => setForm({ ...form, company: e.target.value })}
@@ -51,13 +51,13 @@ const CreateApplication = () => {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-200 mb-2">
+                                <label className="block text-sm font-medium text-gray-300 mb-2">
                                     Role *
                                 </label>
                                 <input
                                     type="text"
                                     required
-                                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                                    className="w-full px-4 py-3 bg-[#0a0a0a] border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                                     placeholder="e.g. Software Engineer"
                                     value={form.role}
                                     onChange={(e) => setForm({ ...form, role: e.target.value })}
@@ -65,15 +65,15 @@ const CreateApplication = () => {
                             </div>
                         </div>
 
-                        <div className="grid md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                             <div>
-                                <label className="block text-sm font-medium text-gray-200 mb-2">
+                                <label className="block text-sm font-medium text-gray-300 mb-2">
                                     Status
                                 </label>
                                 <select
                                     value={form.status}
                                     onChange={(e) => setForm({ ...form, status: e.target.value })}
-                                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                                    className="w-full px-4 py-3 bg-[#0a0a0a] border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                                 >
                                     <option value="Applied">Applied</option>
                                     <option value="Interview">Interview</option>
@@ -83,12 +83,12 @@ const CreateApplication = () => {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-200 mb-2">
+                                <label className="block text-sm font-medium text-gray-300 mb-2">
                                     Applied Date
                                 </label>
                                 <input
                                     type="date"
-                                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                                    className="w-full px-4 py-3 bg-[#0a0a0a] border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                                     value={form.appliedDate}
                                     onChange={(e) => setForm({ ...form, appliedDate: e.target.value })}
                                 />
@@ -96,12 +96,12 @@ const CreateApplication = () => {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-200 mb-2">
+                            <label className="block text-sm font-medium text-gray-300 mb-2">
                                 Notes
                             </label>
                             <textarea
                                 rows={4}
-                                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 resize-none"
+                                className="w-full px-4 py-3 bg-[#0a0a0a] border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 resize-none text-sm sm:text-base"
                                 placeholder="Add any notes about this application..."
                                 value={form.notes}
                                 onChange={(e) => setForm({ ...form, notes: e.target.value })}
@@ -117,11 +117,11 @@ const CreateApplication = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full py-3 px-4 bg-purple-600 hover:bg-purple-700 disabled:bg-purple-800 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent"
+                            className="w-full py-3 px-4 bg-green-600 hover:bg-green-700 disabled:bg-green-800 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-transparent text-sm sm:text-base"
                         >
                             {loading ? (
                                 <div className="flex items-center justify-center">
-                                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
+                                    <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
                                     Creating...
                                 </div>
                             ) : (

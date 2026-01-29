@@ -37,12 +37,12 @@ const AIModal = ({ isOpen, onClose, content, onApply, type = 'bullets' }) => {
     }
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+            <div className="bg-[#0a0a0a] border border-gray-700 rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
                 <div className="p-6">
                     <div className="flex justify-between items-center mb-4">
-                        <h3 className="text-xl font-bold text-gray-800">✨ AI Content Improver</h3>
-                        <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+                        <h3 className="text-xl font-bold text-white">✨ AI Content Improver</h3>
+                        <button onClick={onClose} className="text-gray-400 hover:text-gray-200 transition-colors">
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                             </svg>
@@ -50,19 +50,19 @@ const AIModal = ({ isOpen, onClose, content, onApply, type = 'bullets' }) => {
                     </div>
 
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Current Content:</label>
-                        <div className="bg-gray-50 border rounded-lg p-3 text-sm text-gray-700 max-h-32 overflow-y-auto">
+                        <label className="block text-sm font-medium text-gray-300 mb-2">Current Content:</label>
+                        <div className="bg-[#1a1a1a] border border-gray-600 rounded-lg p-3 text-sm text-gray-200 max-h-32 overflow-y-auto">
                             {content}
                         </div>
                     </div>
 
                     {type === 'bullets' && (
                         <div className="mb-4">
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Number of Points:</label>
+                            <label className="block text-sm font-medium text-gray-300 mb-2">Number of Points:</label>
                             <select
                                 value={numberOfPoints}
                                 onChange={(e) => setNumberOfPoints(Number(e.target.value))}
-                                className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full bg-[#1a1a1a] border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                             >
                                 {[1, 2, 3, 4, 5, 6, 7, 8].map(num => (
                                     <option key={num} value={num}>{num} {num === 1 ? 'point' : 'points'}</option>
@@ -93,14 +93,14 @@ const AIModal = ({ isOpen, onClose, content, onApply, type = 'bullets' }) => {
 
                     {improvedContent && (
                         <div className="mt-4">
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Improved Content:</label>
-                            <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                            <label className="block text-sm font-medium text-gray-300 mb-2">Improved Content:</label>
+                            <div className="bg-[#0f2a1a] border border-green-600 rounded-lg p-4 mb-4">
                                 {type === 'summary' ? (
-                                    <p className="text-sm text-gray-800">{improvedContent[0]}</p>
+                                    <p className="text-sm text-gray-200">{improvedContent[0]}</p>
                                 ) : (
                                     <ul className="space-y-2">
                                         {improvedContent.map((point, index) => (
-                                            <li key={index} className="flex text-sm text-gray-800">
+                                            <li key={index} className="flex text-sm text-gray-200">
                                                 <span className="mr-2">•</span>
                                                 <span>{point}</span>
                                             </li>
