@@ -17,7 +17,7 @@ export const signup = async (req, res) => {
             email,
             password: hashedPassword
         })
-        generateTokenAndSetCookie(user._id, res)
+        await generateTokenAndSetCookie(user._id, res)
         return res.status(201).json({
             message: "User has been created",
             user: {
@@ -46,7 +46,7 @@ export const login = async (req, res) => {
         if (!passwordMatch) {
             return res.status(400).json({ message: "Wrong credentials" })
         }
-        generateTokenAndSetCookie(user._id, res)
+        await generateTokenAndSetCookie(user._id, res)
         return res.status(200).json({
             message: "User logged in",
             user: {

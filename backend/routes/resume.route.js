@@ -1,14 +1,23 @@
 import express from "express"
-const router=express.Router()
 import verifyToken from "../middlewares/verifyToken.js"
-import {createResume,getAllResume,getResumeById,updateResume,deleteResume} from "../controllers/resume.controller.js"
+import {
+    createResume,
+    getResumes,
+    getResumeById,
+    updateResume,
+    deleteResume,
+    downloadResumePDF
+} from "../controllers/resume.controller.js"
+
+const router = express.Router()
 
 router.use(verifyToken)
 
-router.post("/createResume",createResume)
-router.get("/",getAllResume)
-router.get("/:id",getResumeById)
-router.put("/:id",updateResume)
-router.delete("/:id",deleteResume)
+router.post("/", createResume)
+router.get("/", getResumes)
+router.get("/:id", getResumeById)
+router.put("/:id", updateResume)
+router.delete("/:id", deleteResume)
+router.post("/download", downloadResumePDF)
 
 export default router
