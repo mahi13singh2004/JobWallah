@@ -1,0 +1,259 @@
+import { useState } from 'react'
+import { useAIAnalysisStore } from '../store/aiAnalysis.store'
+
+const Analysis = () => {
+    const { analyzeResume, analysis, loading, clearAnalysis } = useAIAnalysisStore()
+    const [resumeFile, setResumeFile] = useState(null)
+    const [jobDescription, setJobDescription] = useState('')
+    const [fileName, setFileName] = useState('')
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0]
+        if (file) {
+            if (file.type !== 'application/pdf') {
+                alert('Please upload a PDF file')
+                return
+            }
+            setResumeFile(file)
+            setFileName(file.name)
+        }
+    }
+
+    const handleAnalyze = async () => {
+        if (!resumeFile) {
+            alert('Please upload your resume PDF')
+            return
+        }
+
+        if (!jobDescription.trim()) {
+            alert('Please provide job description')
+            return
+        }
+
+        try {
+            await analyzeResume(resumeFile, jobDescription)
+        } catch (error) {
+            console.error('Analysis error:', error)
+            alert('Failed to analyze. Please try again.')
+        }
+    }
+
+    const handleReset = () => {
+        setResumeFile(null)
+        setFileName('')
+        setJobDescription('')
+        clearAnalysis()
+    }
+
+    const getScoreColor = (score) => {
+        if (score >= 80) return 'text-green-600'
+        if (score >= 60) return 'text-yellow-600'
+        return 'text-red-600'
+    }
+
+    const getScoreBgColor = (score) => {
+        if (score >= 80) return 'bg-green-100'
+        if (score >= 60) return 'bg-yellow-100'
+        return 'bg-red-100'
+    }
+
+    return (
+        <div className="min-h-screen bg-gray-50 py-8 px-6">
+            <div className="max-w-7xl mx-auto">
+                <div className="mb-8">
+                    <h1 className="text-3xl font-bold text-gray-800 mb-2">Resume vs Job Description Analysis</h1>
+                    <p className="text-gray-600">Get AI-powered insights on how well your resume matches the job requirements</p>
+                </div>
+
+                {!analysis ? (
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <div className="bg-white rounded-lg shadow-md p-6">
+                            <h2 className="text-xl font-semibold mb-4">Upload Your Resume</h2>
+
+                            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-500 transition">
+                                <input
+                                    type="file"
+                                    accept=".pdf"
+                                    onChange={handleFileChange}
+                                    className="hidden"
+                                    id="resume-upload"
+                                />
+                                <label htmlFor="resume-upload" className="cursor-pointer">
+                                    <div className="flex flex-col items-center">
+                                        <svg className="w-16 h-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                        </svg>
+                                        {fileName ? (
+                                            <div>
+                                                <p className="text-green-600 font-medium mb-2">✓ {fileName}</p>
+                                                <p className="text-sm text-gray-500">Click to change file</p>
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                <p className="text-lg font-medium text-gray-700 mb-2">Click to upload resume</p>
+                                                <p className="text-sm text-gray-500">PDF format only (Max 5MB)</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </label>
+                            </div>
+
+                            {fileName && (
+                                <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg flex items-center justify-between">
+                                    <div className="flex items-center">
+                                        <svg className="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span className="text-sm text-green-800">{fileName}</span>
+                                    </div>
+                                    <button
+                                        onClick={() => {
+                                            setResumeFile(null)
+                                            setFileName('')
+                                        }}
+                                        className="text-red-600 hover:text-red-800"
+                                    >
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="bg-white rounded-lg shadow-md p-6">
+                            <h2 className="text-xl font-semibold mb-4">Job Description</h2>
+                            <textarea
+                                value={jobDescription}
+                                onChange={(e) => setJobDescription(e.target.value)}
+                                placeholder="Paste the job description here..."
+                                className="w-full h-96 border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                            />
+                        </div>
+                    </div>
+                ) : (
+                    <div className="space-y-6">
+                        <div className="bg-white rounded-lg shadow-md p-6">
+                            <div className="flex justify-between items-center mb-6">
+                                <h2 className="text-2xl font-bold">Analysis Results</h2>
+                                <button
+                                    onClick={handleReset}
+                                    className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition"
+                                >
+                                    New Analysis
+                                </button>
+                            </div>
+
+                            <div className="grid md:grid-cols-3 gap-4 mb-6">
+                                <div className={`${getScoreBgColor(analysis.overallScore)} rounded-lg p-4 text-center`}>
+                                    <p className="text-sm text-gray-600 mb-1">Overall Match</p>
+                                    <p className={`text-4xl font-bold ${getScoreColor(analysis.overallScore)}`}>{analysis.overallScore}%</p>
+                                </div>
+                                <div className={`${getScoreBgColor(analysis.keywordMatch)} rounded-lg p-4 text-center`}>
+                                    <p className="text-sm text-gray-600 mb-1">Keyword Match</p>
+                                    <p className={`text-4xl font-bold ${getScoreColor(analysis.keywordMatch)}`}>{analysis.keywordMatch}%</p>
+                                </div>
+                                <div className={`${getScoreBgColor(analysis.experienceMatch)} rounded-lg p-4 text-center`}>
+                                    <p className="text-sm text-gray-600 mb-1">Experience Match</p>
+                                    <p className={`text-4xl font-bold ${getScoreColor(analysis.experienceMatch)}`}>{analysis.experienceMatch}%</p>
+                                </div>
+                            </div>
+
+                            <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                                <p className="text-gray-700">{analysis.summary}</p>
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h3 className="text-lg font-semibold mb-3 text-green-700">✓ Matched Skills</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {analysis.matchedSkills.map((skill, index) => (
+                                            <span key={index} className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+                                                {skill}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h3 className="text-lg font-semibold mb-3 text-red-700">✗ Missing Skills</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {analysis.missingSkills.map((skill, index) => (
+                                            <span key={index} className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">
+                                                {skill}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-6">
+                            <div className="bg-white rounded-lg shadow-md p-6">
+                                <h3 className="text-lg font-semibold mb-4 text-green-700">Strengths</h3>
+                                <ul className="space-y-2">
+                                    {analysis.strengths.map((strength, index) => (
+                                        <li key={index} className="flex items-start">
+                                            <span className="text-green-600 mr-2">✓</span>
+                                            <span className="text-gray-700">{strength}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <div className="bg-white rounded-lg shadow-md p-6">
+                                <h3 className="text-lg font-semibold mb-4 text-orange-700">Areas to Improve</h3>
+                                <ul className="space-y-2">
+                                    {analysis.weaknesses.map((weakness, index) => (
+                                        <li key={index} className="flex items-start">
+                                            <span className="text-orange-600 mr-2">!</span>
+                                            <span className="text-gray-700">{weakness}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div className="bg-white rounded-lg shadow-md p-6">
+                            <h3 className="text-lg font-semibold mb-4 text-blue-700">Recommendations</h3>
+                            <ul className="space-y-3">
+                                {analysis.recommendations.map((recommendation, index) => (
+                                    <li key={index} className="flex items-start">
+                                        <span className="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center mr-3 shrink-0 text-sm font-semibold">
+                                            {index + 1}
+                                        </span>
+                                        <span className="text-gray-700">{recommendation}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                )}
+
+                {!analysis && (
+                    <div className="mt-6 flex justify-center">
+                        <button
+                            onClick={handleAnalyze}
+                            disabled={loading}
+                            className="bg-linear-to-r from-purple-600 to-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            {loading ? (
+                                <span className="flex items-center">
+                                    <svg className="animate-spin h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Analyzing...
+                                </span>
+                            ) : (
+                                '✨ Analyze Resume'
+                            )}
+                        </button>
+                    </div>
+                )}
+            </div>
+        </div>
+    )
+}
+
+export default Analysis

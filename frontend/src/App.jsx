@@ -7,7 +7,8 @@ import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import ResumeLanding from "./pages/ResumeLanding"
 import MyResumes from "./pages/MyResumes"
-import Resume from "./pages/CreateResume.jsx"
+import CreateResume from "./pages/CreateResume.jsx"
+import Analysis from "./pages/Analysis"
 import { useAuthStore } from "./store/auth.store.js"
 
 const App = () => {
@@ -27,7 +28,8 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/resume" element={<ResumeLanding />} />
         <Route path="/resume/my-resumes" element={<MyResumes />} />
-        <Route path="/resume/create" element={<Resume />} />
+        <Route path="/resume/create" element={<CreateResume />} />
+        <Route path="/analysis" element={<Analysis />} />
       </Routes>
     </>
   )

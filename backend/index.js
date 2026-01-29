@@ -4,7 +4,8 @@ import connectDB from "./db/connectDB.js"
 import cookieParser from "cookie-parser"
 import authRoutes from "./routes/auth.route.js"
 import resumeRoutes from "./routes/resume.route.js"
-import aiRoutes from "./routes/ai.route.js"
+import aiSuggestionsRoutes from "./routes/aiSuggestions.route.js"
+import aiAnalysisRoutes from "./routes/aiAnalysis.route.js"
 import cors from "cors"
 const app = express()
 dotenv.config()
@@ -17,7 +18,8 @@ app.use(cors({
 }))
 app.use("/api/auth", authRoutes)
 app.use("/api/resume", resumeRoutes)
-app.use("/api/ai", aiRoutes)
+app.use("/api/ai-suggestions", aiSuggestionsRoutes)
+app.use("/api/ai-analysis", aiAnalysisRoutes)
 
 const PORT = process.env.PORT || 5000
 

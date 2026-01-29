@@ -1,30 +1,27 @@
 import { useState } from 'react'
-import axiosInstance from '../../utils/axios'
+import { useAISuggestionsStore } from '../../store/aiSuggestions.store'
 
 const AIModal = ({ isOpen, onClose, content, onApply, type = 'bullets' }) => {
+    const { improveContent, improveSummary, loading } = useAISuggestionsStore()
     const [numberOfPoints, setNumberOfPoints] = useState(3)
-    const [loading, setLoading] = useState(false)
     const [improvedContent, setImprovedContent] = useState(null)
 
     if (!isOpen) return null
 
     const handleImprove = async () => {
         try {
-            setLoading(true)
             setImprovedContent(null)
 
             if (type === 'summary') {
-                const res = await axiosInstance.post('/api/ai/improve-summary', { content })
-                setImprovedContent([res.data.summary])
+                const summary = await improveSummary(content)
+                setImprovedContent([summary])
             } else {
-                const res = await axiosInstance.post('/api/ai/improve-content', { content, numberOfPoints })
-                setImprovedContent(res.data.points)
+                const points = await improveContent(content, numberOfPoints)
+                setImprovedContent(points)
             }
         } catch (error) {
             console.error('AI error:', error)
             alert('Failed to improve content. Please try again.')
-        } finally {
-            setLoading(false)
         }
     }
 

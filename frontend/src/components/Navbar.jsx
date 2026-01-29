@@ -29,6 +29,9 @@ const Navbar = () => {
               <Link to="/resume" className="hover:underline">
                 Resume
               </Link>
+              <Link to="/analysis" className="hover:underline">
+                Analysis
+              </Link>
               <button
                 onClick={handleLogout}
                 className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded"

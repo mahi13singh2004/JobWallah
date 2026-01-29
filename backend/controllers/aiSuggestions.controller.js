@@ -1,4 +1,4 @@
-import { improveResumeContent, improveSummary } from "../utils/gemini.js"
+import { improveResumeContent, improveSummary } from "../utils/geminiSuggestions.js"
 
 export const improveContent = async (req, res) => {
     try {
