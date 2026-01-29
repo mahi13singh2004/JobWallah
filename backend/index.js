@@ -9,6 +9,7 @@ import aiAnalysisRoutes from "./routes/aiAnalysis.route.js"
 import applicationRoutes from "./routes/application.route.js"
 import reminderRoutes from "./routes/reminder.route.js"
 import aiEmailRoutes from "./routes/aiEmail.route.js"
+import jobSearchRoutes from "./routes/jobSearch.route.js"
 import { startReminder } from "./utils/reminder.job.js"
 
 import cors from "cors"
@@ -28,6 +29,7 @@ app.use("/api/ai-analysis", aiAnalysisRoutes)
 app.use("/api/application", applicationRoutes)
 app.use("/api/reminder", reminderRoutes)
 app.use("/api/ai", aiEmailRoutes)
+app.use("/api/jobs", jobSearchRoutes)
 
 const PORT = process.env.PORT || 5000
 

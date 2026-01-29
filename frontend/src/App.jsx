@@ -13,6 +13,7 @@ import Application from './pages/Application'
 import CreateApplication from './pages/CreateApplication'
 import EditApplication from './pages/EditApplication'
 import AiEmailGenerator from './pages/AiEmailGenerator'
+import JobSearch from './pages/JobSearch'
 import { useAuthStore } from "./store/auth.store.js"
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
         <Route path="/applications/:id" element={<EditApplication />} />
         <Route path="/ai-email/:applicationId" element={<AiEmailGenerator />} />
         <Route path="/ai-email" element={<AiEmailGenerator />} />
+        <Route path="/job-search" element={<JobSearch />} />
       </Routes>
     </>
   )
