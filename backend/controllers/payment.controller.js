@@ -1,6 +1,7 @@
 import Razorpay from "razorpay"
 import crypto from "crypto"
 import User from "../models/user.model.js"
+import Payment from "../models/payment.model.js"
 
 const razorpay = new Razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
@@ -25,7 +26,7 @@ export const createOrder = async (req, res) => {
 
         const userId = req.user.id || req.user._id
         const options = {
-            amount: 100,
+            amount: 2900,
             currency: "INR",
             receipt: `receipt_${Date.now()}`,
             notes: {
@@ -75,6 +76,15 @@ export const verifyPayment = async (req, res) => {
                 razorpayOrderId: razorpay_order_id
             })
 
+            await Payment.create({
+                userId: req.user.id,
+                razorpayOrderId: razorpay_order_id,
+                razorpayPaymentId: razorpay_payment_id,
+                amount: 29,
+                currency: "INR",
+                plan: "premium_lifetime"
+            })
+
             res.status(200).json({
                 success: true,
                 message: "Payment verified successfully"
@@ -106,6 +116,37 @@ export const getPaymentStatus = async (req, res) => {
         res.status(500).json({
             success: false,
             message: "Failed to get payment status"
+        })
+    }
+}
+
+export const getTotalPayments = async (req, res) => {
+    try {
+        const totalPayments = await Payment.countDocuments()
+
+        const totalAmountResult = await Payment.aggregate([
+            { $group: { _id: null, totalAmount: { $sum: "$amount" } } }
+        ])
+
+        const totalAmount = totalAmountResult[0]?.totalAmount || 0
+
+        const paymentDetails = await Payment.find()
+            .populate('userId', 'name email')
+            .select('amount currency plan createdAt')
+            .sort({ createdAt: -1 })
+
+        res.status(200).json({
+            success: true,
+            totalPayments,
+            totalAmount,
+            currency: "INR",
+            paymentDetails
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Failed to get total payments",
+            error: error.message
         })
     }
 }

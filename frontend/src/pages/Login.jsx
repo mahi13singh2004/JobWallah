@@ -87,7 +87,6 @@ const Login = () => {
                 {loading ? 'Signing in...' : 'Sign in'}
               </button>
 
-              {/* Recruiter Demo Login */}
               <div className="mt-3 sm:mt-4">
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
