@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useJobSearchStore } from '../store/jobSearch.store';
-import { useToastContext } from '../context/ToastContext';
+import { useJobSearchStore } from '../store/jobSearch.store.js';
+import { useToastContext } from '../context/ToastContext.jsx';
 
 const JobSearch = () => {
     const { jobs, isLoading, searchesRemaining, searchJobs } = useJobSearchStore();
@@ -39,10 +39,10 @@ const JobSearch = () => {
 
                 {searchesRemaining !== null && (
                     <div className={`border rounded-lg p-4 mb-6 ${searchesRemaining === 'unlimited'
-                            ? 'bg-yellow-900/20 border-yellow-600'
-                            : searchesRemaining === 0
-                                ? 'bg-red-900/20 border-red-600'
-                                : 'bg-blue-900/20 border-blue-600'
+                        ? 'bg-yellow-900/20 border-yellow-600'
+                        : searchesRemaining === 0
+                            ? 'bg-red-900/20 border-red-600'
+                            : 'bg-blue-900/20 border-blue-600'
                         }`}>
                         {searchesRemaining === 'unlimited' ? (
                             <div className="flex items-center justify-between">

@@ -1,15 +1,15 @@
 import { create } from 'zustand'
-import axios from '../utils/axios'
+import axios from '../utils/axios.js'
 
-const usePaymentStore = create((set, get) => ({
+export const usePaymentStore = create((set) => ({
     isLoading: false,
     error: null,
     paymentStatus: null,
 
-    createOrder: async (amount) => {
+    createOrder: async () => {
         set({ isLoading: true, error: null })
         try {
-            const response = await axios.post('/payment/create-order', { amount })
+            const response = await axios.post('/payment/create-order')
             return response.data.order
         } catch (error) {
             set({ error: error.response?.data?.message || 'Failed to create order' })
@@ -49,5 +49,3 @@ const usePaymentStore = create((set, get) => ({
     clearError: () => set({ error: null }),
     clearPaymentStatus: () => set({ paymentStatus: null })
 }))
-
-export default usePaymentStore
