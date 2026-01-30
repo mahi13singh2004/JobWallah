@@ -160,7 +160,7 @@ const Premium = () => {
                             </div>
                         </div>
                         <div className="mt-8">
-                            <div className="text-3xl font-bold">₹999</div>
+                            <div className="text-3xl font-bold">₹99</div>
                             <div className="text-green-100">One-time payment</div>
                         </div>
                         <button

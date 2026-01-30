@@ -66,4 +66,18 @@ export const useAuthStore = create((set, get) => ({
             set({ loading: false })
         }
     },
+
+    checkAuth: async () => {
+        try {
+            set({ loading: true, err: null })
+            const res = await axiosInstance.get("/api/auth/me")
+            set({ user: res.data.user })
+        }
+        catch (error) {
+            set({ user: null })
+        }
+        finally {
+            set({ loading: false })
+        }
+    },
 }))

@@ -9,23 +9,13 @@ const razorpay = new Razorpay({
 
 export const createOrder = async (req, res) => {
     try {
-        const { amount } = req.body
-
-        if (!amount || amount < 99) {
-            return res.status(400).json({
-                success: false,
-                message: "Minimum amount is ₹99"
-            })
-        }
-
         const options = {
-            amount: amount * 100,
+            amount: 9900,
             currency: "INR",
             receipt: `receipt_${Date.now()}`,
             notes: {
                 userId: req.user.id,
-                plan: "premium_lifetime",
-                customAmount: amount
+                plan: "premium_lifetime"
             }
         }
 

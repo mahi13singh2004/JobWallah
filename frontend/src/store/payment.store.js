@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import axios from '../utils/axios.js'
+import axiosInstance from '../utils/axios.js'
 
 export const usePaymentStore = create((set) => ({
     isLoading: false,
@@ -9,7 +9,7 @@ export const usePaymentStore = create((set) => ({
     createOrder: async () => {
         set({ isLoading: true, error: null })
         try {
-            const response = await axios.post('/payment/create-order')
+            const response = await axiosInstance.post('/api/payment/create-order')
             return response.data.order
         } catch (error) {
             set({ error: error.response?.data?.message || 'Failed to create order' })
@@ -22,7 +22,7 @@ export const usePaymentStore = create((set) => ({
     verifyPayment: async (paymentData) => {
         set({ isLoading: true, error: null })
         try {
-            const response = await axios.post('/payment/verify', paymentData)
+            const response = await axiosInstance.post('/api/payment/verify', paymentData)
             set({ paymentStatus: 'success' })
             return response.data
         } catch (error) {
@@ -36,7 +36,7 @@ export const usePaymentStore = create((set) => ({
     getPaymentStatus: async () => {
         set({ isLoading: true, error: null })
         try {
-            const response = await axios.get('/payment/status')
+            const response = await axiosInstance.get('/api/payment/status')
             return response.data
         } catch (error) {
             set({ error: error.response?.data?.message || 'Failed to get payment status' })
