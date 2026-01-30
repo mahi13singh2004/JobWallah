@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useJobSearchStore } from '../store/jobSearch.store';
 import { useToastContext } from '../context/ToastContext';
 
@@ -37,10 +38,46 @@ const JobSearch = () => {
                 <h1 className="text-2xl sm:text-3xl font-bold text-white mb-6 lg:mb-8">Job Search</h1>
 
                 {searchesRemaining !== null && (
-                    <div className="bg-blue-900/20 border border-blue-600 rounded-lg p-4 mb-6">
-                        <p className="text-blue-300 text-sm sm:text-base">
-                            Searches remaining today: <span className="font-bold">{searchesRemaining}/3</span>
-                        </p>
+                    <div className={`border rounded-lg p-4 mb-6 ${searchesRemaining === 'unlimited'
+                            ? 'bg-yellow-900/20 border-yellow-600'
+                            : searchesRemaining === 0
+                                ? 'bg-red-900/20 border-red-600'
+                                : 'bg-blue-900/20 border-blue-600'
+                        }`}>
+                        {searchesRemaining === 'unlimited' ? (
+                            <div className="flex items-center justify-between">
+                                <p className="text-yellow-300 text-sm sm:text-base">
+                                    <span className="font-bold">Premium Member:</span> Unlimited searches available!
+                                </p>
+                                <span className="px-3 py-1 bg-yellow-500 text-black text-xs font-bold rounded-full">
+                                    PREMIUM
+                                </span>
+                            </div>
+                        ) : searchesRemaining === 0 ? (
+                            <div className="text-center">
+                                <p className="text-red-300 text-sm sm:text-base mb-3">
+                                    Daily search limit reached. Upgrade to premium for unlimited searches!
+                                </p>
+                                <Link
+                                    to="/premium"
+                                    className="inline-block px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-black font-medium rounded-lg transition-colors text-sm"
+                                >
+                                    Upgrade to Premium
+                                </Link>
+                            </div>
+                        ) : (
+                            <div className="flex items-center justify-between">
+                                <p className="text-blue-300 text-sm sm:text-base">
+                                    Searches remaining today: <span className="font-bold">{searchesRemaining}/3</span>
+                                </p>
+                                <Link
+                                    to="/premium"
+                                    className="text-yellow-400 hover:text-yellow-300 text-xs font-medium transition-colors"
+                                >
+                                    Get Unlimited →
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 )}
 

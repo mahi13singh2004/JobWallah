@@ -11,6 +11,7 @@ import reminderRoutes from "./routes/reminder.route.js"
 import aiEmailRoutes from "./routes/aiEmail.route.js"
 import jobSearchRoutes from "./routes/jobSearch.route.js"
 import healthRoutes from "./routes/health.route.js"
+import paymentRoutes from "./routes/payment.route.js"
 import { startReminder } from "./utils/reminder.job.js"
 
 import cors from "cors"
@@ -31,6 +32,7 @@ app.use("/api/application", applicationRoutes)
 app.use("/api/reminder", reminderRoutes)
 app.use("/api/ai", aiEmailRoutes)
 app.use("/api/jobs", jobSearchRoutes)
+app.use("/api/payment", paymentRoutes)
 app.use("/api", healthRoutes)
 
 const PORT = process.env.PORT || 5000

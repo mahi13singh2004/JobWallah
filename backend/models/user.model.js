@@ -21,6 +21,22 @@ const userSchema = new mongoose.Schema({
     lastJobSearch: {
         type: Date,
         default: null
+    },
+    isPremium: {
+        type: Boolean,
+        default: false
+    },
+    premiumPurchaseDate: {
+        type: Date,
+        default: null
+    },
+    razorpayOrderId: {
+        type: String,
+        default: null
+    },
+    razorpayPaymentId: {
+        type: String,
+        default: null
     }
 },
     { timestamps: true }

@@ -84,6 +84,13 @@ const Navbar = () => {
                   <span className="hidden sm:inline">Profile</span>
                 </Link>
 
+                {!user.isPremium && (
+                  <Link to="/premium" className="flex items-center space-x-1 sm:space-x-2 text-yellow-400 hover:text-yellow-300 transition-colors text-xs sm:text-sm font-medium">
+                    <span className="text-xs">★</span>
+                    <span className="hidden sm:inline">Premium</span>
+                  </Link>
+                )}
+
                 {/* User info - simplified on mobile */}
                 <div className="flex items-center space-x-2 sm:space-x-4 ml-2 sm:ml-4 pl-2 sm:pl-4 border-l border-gray-800">
                   <div className="flex items-center space-x-1 sm:space-x-2">

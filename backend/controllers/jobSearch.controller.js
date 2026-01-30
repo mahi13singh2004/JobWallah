@@ -13,22 +13,25 @@ export const searchJobs = async (req, res) => {
 
         if (userId) {
             const user = await User.findById(userId);
-            const now = new Date();
-            const last24h = new Date(now - 24 * 60 * 60 * 1000);
 
-            if (!user.lastJobSearch || user.lastJobSearch < last24h) {
-                user.jobSearchCount = 0;
-            }
-            if (user.jobSearchCount >= 3) {
-                return res.status(429).json({
-                    success: false,
-                    message: 'Daily search limit reached. Try again in 24 hours.'
-                });
-            }
+            if (!user.isPremium) {
+                const now = new Date();
+                const last24h = new Date(now - 24 * 60 * 60 * 1000);
 
-            user.jobSearchCount += 1;
-            user.lastJobSearch = now;
-            await user.save();
+                if (!user.lastJobSearch || user.lastJobSearch < last24h) {
+                    user.jobSearchCount = 0;
+                }
+                if (user.jobSearchCount >= 3) {
+                    return res.status(429).json({
+                        success: false,
+                        message: 'Daily search limit reached. Upgrade to premium for unlimited searches.'
+                    });
+                }
+
+                user.jobSearchCount += 1;
+                user.lastJobSearch = now;
+                await user.save();
+            }
         }
 
         const linkedInOptions = {
@@ -56,6 +59,12 @@ export const searchJobs = async (req, res) => {
 
         const combinedJobs = [...linkedInJobs, ...serpApiJobs].slice(0, 10);
 
+        let searchesRemaining = null;
+        if (userId) {
+            const currentUser = await User.findById(userId);
+            searchesRemaining = currentUser.isPremium ? 'unlimited' : (3 - currentUser.jobSearchCount);
+        }
+
         res.status(200).json({
             success: true,
             message: 'Jobs fetched successfully',
@@ -66,7 +75,7 @@ export const searchJobs = async (req, res) => {
                     linkedin: linkedInJobs.length,
                     google: serpApiJobs.length
                 },
-                searchesRemaining: userId ? (3 - (await User.findById(userId)).jobSearchCount) : null
+                searchesRemaining
             }
         });
     } catch (error) {

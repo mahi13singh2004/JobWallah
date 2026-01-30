@@ -195,6 +195,30 @@ const Profile = () => {
                       </p>
                     </div>
                   </div>
+
+                  <div className="flex items-center space-x-3">
+                    <div className={`w-8 h-8 lg:w-10 lg:h-10 ${user.isPremium ? 'bg-yellow-500/10' : 'bg-gray-500/10'} rounded-lg flex items-center justify-center`}>
+                      <span className={`${user.isPremium ? 'text-yellow-400' : 'text-gray-400'} text-xs lg:text-sm font-bold`}>
+                        {user.isPremium ? '★' : '☆'}
+                      </span>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-gray-400 text-xs lg:text-sm">Account Type</p>
+                      <div className="flex items-center justify-between">
+                        <p className={`font-medium text-sm lg:text-base ${user.isPremium ? 'text-yellow-400' : 'text-white'}`}>
+                          {user.isPremium ? 'Premium' : 'Free'}
+                        </p>
+                        {!user.isPremium && (
+                          <Link
+                            to="/premium"
+                            className="text-xs bg-yellow-500 hover:bg-yellow-600 text-black px-2 py-1 rounded-full font-medium transition-colors"
+                          >
+                            Upgrade
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
