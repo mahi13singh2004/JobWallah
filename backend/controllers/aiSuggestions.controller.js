@@ -19,7 +19,6 @@ export const improveContent = async (req, res) => {
             points: improvedPoints
         })
     } catch (error) {
-        console.log("Error in improveContent:", error)
         return res.status(500).json({ message: error.message || "Internal server error" })
     }
 }
@@ -39,7 +38,6 @@ export const improveSummaryText = async (req, res) => {
             summary: improvedSummary
         })
     } catch (error) {
-        console.log("Error in improveSummaryText:", error)
         return res.status(500).json({ message: error.message || "Internal server error" })
     }
 }

@@ -23,7 +23,7 @@ export const createReminder = async (req, res) => {
         return res.status(201).json(reminder)
     }
     catch (error) {
-        console.log("Error in createReminder backend")
+        
         return res.status(500).json({ "message": "Internal Server Error" })
     }
 }
@@ -36,7 +36,7 @@ export const getReminder = async (req, res) => {
         return res.json(reminders)
     }
     catch (error) {
-        console.log("Error in getReminder backend")
+        
         return res.status(500).json({ "message": "Internal Server Error" })
     }
 }
@@ -51,7 +51,7 @@ export const getReminderByApplication = async (req, res) => {
         return res.json(reminders)
     }
     catch (error) {
-        console.log("Error in getSpecificReminder backend")
+  
         return res.status(500).json({ "message": "Internal Server Error" })
     }
 }
@@ -75,7 +75,7 @@ export const updateReminder = async (req, res) => {
         return res.json(updatedReminder)
     }
     catch (error) {
-        console.log("Error in updateReminder backend")
+      
         return res.status(500).json({ "message": "Internal Server Error" })
     }
 }
@@ -94,7 +94,6 @@ export const deleteReminder = async (req, res) => {
         return res.json({ message: "Reminder Deleted" })
     }
     catch (error) {
-        console.log("Error in deleteReminder backend")
         return res.status(500).json({ "message": "Internal Server Error" })
     }
 }

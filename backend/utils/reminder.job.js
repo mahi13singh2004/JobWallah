@@ -24,7 +24,6 @@ export const startReminder=()=>{
             }
         } 
         catch (error) {
-            console.log("Error in cron job",error.message)    
         }
     })
 }

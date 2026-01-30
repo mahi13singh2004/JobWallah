@@ -28,9 +28,6 @@ const Premium = () => {
     }
 
     const handlePayment = async () => {
-        console.log('Payment button clicked')
-        console.log('Razorpay Key:', import.meta.env.VITE_RAZORPAY_KEY_ID)
-
         if (!import.meta.env.VITE_RAZORPAY_KEY_ID) {
             showToast('Razorpay key not configured. Please add VITE_RAZORPAY_KEY_ID to .env file', 'error')
             return
@@ -44,9 +41,7 @@ const Premium = () => {
                 return
             }
 
-            console.log('Creating order...')
             const order = await createOrder()
-            console.log('Order created:', order)
 
             const options = {
                 key: import.meta.env.VITE_RAZORPAY_KEY_ID,
@@ -57,7 +52,6 @@ const Premium = () => {
                 order_id: order.id,
                 handler: async (response) => {
                     try {
-                        console.log('Payment successful, verifying...')
                         await verifyPayment({
                             razorpay_order_id: response.razorpay_order_id,
                             razorpay_payment_id: response.razorpay_payment_id,
@@ -67,7 +61,6 @@ const Premium = () => {
                         await checkAuth()
                         navigate('/profile')
                     } catch (error) {
-                        console.error('Payment verification failed:', error)
                         showToast('Payment verification failed', 'error')
                     }
                 },
@@ -83,7 +76,6 @@ const Premium = () => {
             const razorpay = new window.Razorpay(options)
             razorpay.open()
         } catch (error) {
-            console.error('Payment error:', error)
             showToast(error.message || 'Payment failed', 'error')
         } finally {
             setIsProcessing(false)
@@ -110,22 +102,6 @@ const Premium = () => {
                                 <span className="text-green-400 mr-3">✓</span>
                                 <span className="text-gray-300">3 job searches per day</span>
                             </div>
-                            <div className="flex items-center">
-                                <span className="text-green-400 mr-3">✓</span>
-                                <span className="text-gray-300">Basic resume builder</span>
-                            </div>
-                            <div className="flex items-center">
-                                <span className="text-green-400 mr-3">✓</span>
-                                <span className="text-gray-300">Application tracking</span>
-                            </div>
-                            <div className="flex items-center">
-                                <span className="text-red-400 mr-3">✗</span>
-                                <span className="text-gray-500">Unlimited job searches</span>
-                            </div>
-                            <div className="flex items-center">
-                                <span className="text-red-400 mr-3">✗</span>
-                                <span className="text-gray-500">Priority support</span>
-                            </div>
                         </div>
                         <div className="mt-8">
                             <div className="text-3xl font-bold text-white">Free</div>
@@ -142,25 +118,9 @@ const Premium = () => {
                                 <span className="text-green-200 mr-3">✓</span>
                                 <span>Unlimited job searches</span>
                             </div>
-                            <div className="flex items-center">
-                                <span className="text-green-200 mr-3">✓</span>
-                                <span>Advanced resume builder</span>
-                            </div>
-                            <div className="flex items-center">
-                                <span className="text-green-200 mr-3">✓</span>
-                                <span>Application tracking</span>
-                            </div>
-                            <div className="flex items-center">
-                                <span className="text-green-200 mr-3">✓</span>
-                                <span>AI-powered suggestions</span>
-                            </div>
-                            <div className="flex items-center">
-                                <span className="text-green-200 mr-3">✓</span>
-                                <span>Priority support</span>
-                            </div>
                         </div>
                         <div className="mt-8">
-                            <div className="text-3xl font-bold">₹99</div>
+                            <div className="text-3xl font-bold">₹9</div>
                             <div className="text-green-100">One-time payment</div>
                         </div>
                         <button

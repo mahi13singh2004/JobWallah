@@ -9,11 +9,6 @@ const razorpay = new Razorpay({
 
 export const createOrder = async (req, res) => {
     try {
-        console.log('Creating Razorpay order...')
-        console.log('User ID:', req.user?.id || req.user?._id)
-        console.log('Razorpay Key ID:', process.env.RAZORPAY_KEY_ID ? 'Set' : 'Not set')
-        console.log('Razorpay Key Secret:', process.env.RAZORPAY_KEY_SECRET ? 'Set' : 'Not set')
-
         if (!req.user) {
             return res.status(401).json({
                 success: false,
@@ -30,7 +25,7 @@ export const createOrder = async (req, res) => {
 
         const userId = req.user.id || req.user._id
         const options = {
-            amount: 9900,
+            amount: 100,
             currency: "INR",
             receipt: `receipt_${Date.now()}`,
             notes: {
@@ -39,9 +34,7 @@ export const createOrder = async (req, res) => {
             }
         }
 
-        console.log('Order options:', options)
         const order = await razorpay.orders.create(options)
-        console.log('Order created:', order.id)
 
         await User.findByIdAndUpdate(userId, {
             razorpayOrderId: order.id
@@ -56,7 +49,6 @@ export const createOrder = async (req, res) => {
             }
         })
     } catch (error) {
-        console.error('Razorpay order creation error:', error)
         res.status(500).json({
             success: false,
             message: "Failed to create order",

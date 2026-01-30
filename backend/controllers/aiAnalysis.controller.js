@@ -27,7 +27,6 @@ export const analyzeResume = async (req, res) => {
             analysis
         })
     } catch (error) {
-        console.log("Error in analyzeResume:", error)
         return res.status(500).json({ message: error.message || "Internal server error" })
     }
 }

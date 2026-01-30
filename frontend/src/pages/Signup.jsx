@@ -25,7 +25,6 @@ const Signup = () => {
       if (res) navigate("/")
     }
     catch (error) {
-      console.log(error)
     }
   }
 

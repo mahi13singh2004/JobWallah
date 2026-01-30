@@ -27,7 +27,6 @@ export const signup = async (req, res) => {
         })
     }
     catch (error) {
-        console.log("Error in signup auth backend")
         return res.status(500).json({ message: "Internal server error" })
     }
 }
@@ -56,7 +55,7 @@ export const login = async (req, res) => {
         })
     }
     catch (error) {
-        console.log("Error in login auth backend")
+
         return res.status(500).json({ message: "Internal server error" })
     }
 }
@@ -69,7 +68,6 @@ export const logout = async (req, res) => {
         })
     }
     catch (error) {
-        console.log("Error in logout auth backend")
         return res.status(500).json({ message: "Internal server error" })
     }
 }
@@ -89,7 +87,6 @@ export const getMe = async (req, res) => {
         })
     }
     catch (error) {
-        console.log("Error in getMe auth backend")
         return res.status(500).json({ message: "Internal server error" })
     }
 }

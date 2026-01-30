@@ -25,15 +25,12 @@ export const useBackendWakeUp = () => {
 
                 if (response.ok) {
                     const data = await response.json()
-                    console.log('Backend is ready:', data)
                     setIsBackendReady(true)
                     setIsChecking(false)
                     clearInterval(interval)
                     clearTimeout(timeout)
                 }
             } catch (error) {
-                console.log(`Backend ping attempt ${attempts} failed:`, error.message)
-               
             }
         }
 
@@ -45,7 +42,6 @@ export const useBackendWakeUp = () => {
 
         
         timeout = setTimeout(() => {
-            console.log('Backend wake-up timeout reached, proceeding anyway')
             setIsBackendReady(true)
             setIsChecking(false)
             clearInterval(interval)

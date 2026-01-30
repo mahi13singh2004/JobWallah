@@ -13,7 +13,7 @@ export const createResume = async (req, res) => {
             resume
         })
     } catch (error) {
-        console.log("Error in createResume:", error)
+        
         return res.status(500).json({ message: "Internal server error" })
     }
 }
@@ -26,7 +26,7 @@ export const getResumes = async (req, res) => {
             resumes
         })
     } catch (error) {
-        console.log("Error in getResumes:", error)
+        
         return res.status(500).json({ message: "Internal server error" })
     }
 }
@@ -47,7 +47,7 @@ export const getResumeById = async (req, res) => {
             resume
         })
     } catch (error) {
-        console.log("Error in getResumeById:", error)
+        
         return res.status(500).json({ message: "Internal server error" })
     }
 }
@@ -69,7 +69,7 @@ export const updateResume = async (req, res) => {
             resume
         })
     } catch (error) {
-        console.log("Error in updateResume:", error)
+        
         return res.status(500).json({ message: "Internal server error" })
     }
 }
@@ -89,7 +89,7 @@ export const deleteResume = async (req, res) => {
             message: "Resume deleted successfully"
         })
     } catch (error) {
-        console.log("Error in deleteResume:", error)
+        
         return res.status(500).json({ message: "Internal server error" })
     }
 }
@@ -344,7 +344,7 @@ export const downloadResumePDF = async (req, res) => {
 
         doc.end()
     } catch (error) {
-        console.log("Error in downloadResumePDF:", error)
+        
         return res.status(500).json({ message: "Internal server error" })
     }
 }

@@ -22,7 +22,6 @@ export const createApplication=async(req,res)=>{
         })
     } 
     catch (error) {
-        console.log("Error in applicationCreate backend")
         return res.status(500).json({"message":"Internal Server Error"}) 
     }
 }
@@ -39,7 +38,6 @@ export const getApplication=async(req,res)=>{
         })
     } 
     catch (error) {
-        console.log("Error in getApplication backend")
         return res.status(500).json({"message":"Internal Server Error"}) 
     }
 }
@@ -60,7 +58,6 @@ export const getApplicationById=async(req,res)=>{
         })
     } 
     catch (error) {
-        console.log("Error in getAppById backend")
         return res.status(500).json({"message":"Internal Server Error"}) 
     }
 }
@@ -88,7 +85,6 @@ export const updateApplication=async(req,res)=>{
         })
     } 
     catch (error) {
-        console.log("Error in updateApplication backend")
         return res.status(500).json({"message":"Internal Server Error"}) 
     }
 }
@@ -106,7 +102,6 @@ export const deleteApplication=async(req,res)=>{
         return res.status(200).json({"message":"Application deleted successfully"})
     } 
     catch (error) {
-        console.log("Error in deleteApplication backend")
         return res.status(500).json({"message":"Internal Server Error"}) 
     }
 }

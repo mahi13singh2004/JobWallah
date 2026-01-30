@@ -47,8 +47,6 @@ export const generateEmail = async (req, res) => {
         })
     }
     catch (error) {
-        console.log("Error in generateEmail backend", error.message)
-        console.log(error)
         return res.status(500).json({ "message": "Internal Server Error" })
     }
 }
