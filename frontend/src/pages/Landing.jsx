@@ -230,7 +230,7 @@ const Landing = () => {
               </a>
               <span className="hidden sm:inline">•</span>
               <a
-                href=""
+                href="https://github.com/mahi13singh2004"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 hover:text-gray-300 transition-colors"
