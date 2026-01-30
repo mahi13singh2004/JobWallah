@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { useAIAnalysisStore } from '../store/aiAnalysis.store'
+import { useToastContext } from '../context/ToastContext'
 
 const Analysis = () => {
     const { analyzeResume, analysis, loading, clearAnalysis } = useAIAnalysisStore()
+    const { showToast } = useToastContext()
     const [resumeFile, setResumeFile] = useState(null)
     const [jobDescription, setJobDescription] = useState('')
     const [fileName, setFileName] = useState('')
@@ -11,7 +13,7 @@ const Analysis = () => {
         const file = e.target.files[0]
         if (file) {
             if (file.type !== 'application/pdf') {
-                alert('Please upload a PDF file')
+                showToast('Please upload a PDF file', 'warning')
                 return
             }
             setResumeFile(file)
@@ -21,12 +23,12 @@ const Analysis = () => {
 
     const handleAnalyze = async () => {
         if (!resumeFile) {
-            alert('Please upload your resume PDF')
+            showToast('Please upload your resume PDF', 'warning')
             return
         }
 
         if (!jobDescription.trim()) {
-            alert('Please provide job description')
+            showToast('Please provide job description', 'warning')
             return
         }
 
@@ -34,7 +36,7 @@ const Analysis = () => {
             await analyzeResume(resumeFile, jobDescription)
         } catch (error) {
             console.error('Analysis error:', error)
-            alert('Failed to analyze. Please try again.')
+            showToast('Failed to analyze. Please try again.', 'error')
         }
     }
 

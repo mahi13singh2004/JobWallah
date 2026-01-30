@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import WakeUpLoader from './components/WakeUpLoader'
 import Landing from "./pages/Landing"
 import Profile from "./pages/Profile"
 import Login from "./pages/Login"
@@ -15,13 +16,22 @@ import EditApplication from './pages/EditApplication'
 import AiEmailGenerator from './pages/AiEmailGenerator'
 import JobSearch from './pages/JobSearch'
 import { useAuthStore } from "./store/auth.store.js"
+import { useBackendWakeUp } from './hooks/useBackendWakeUp'
 
 const App = () => {
   const { getMe } = useAuthStore()
+  const { isBackendReady, isChecking } = useBackendWakeUp()
 
   useEffect(() => {
-    getMe()
-  }, [getMe])
+    if (isBackendReady) {
+      getMe()
+    }
+  }, [getMe, isBackendReady])
+
+
+  if (isChecking || !isBackendReady) {
+    return <WakeUpLoader />
+  }
 
   return (
     <>

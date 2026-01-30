@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useJobSearchStore } from '../store/jobSearch.store';
+import { useToastContext } from '../context/ToastContext';
 
 const JobSearch = () => {
     const { jobs, isLoading, searchesRemaining, searchJobs } = useJobSearchStore();
+    const { showToast } = useToastContext();
     const [formData, setFormData] = useState({
         keyword: '',
         location: '',
@@ -25,7 +27,7 @@ const JobSearch = () => {
             }
         } catch (error) {
             console.error('Search failed:', error);
-            alert(error.response?.data?.message || 'Search failed');
+            showToast(error.response?.data?.message || 'Search failed', 'error');
         }
     };
 

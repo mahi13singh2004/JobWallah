@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import AIModal from '../AIModal'
+import { useToastContext } from '../../../context/ToastContext'
 
 const SummaryEditor = ({ data, onChange }) => {
+    const { showToast } = useToastContext()
     const [showSection, setShowSection] = useState(!!data)
     const [aiModalOpen, setAiModalOpen] = useState(false)
 
@@ -17,7 +19,7 @@ const SummaryEditor = ({ data, onChange }) => {
 
     const handleAIClick = () => {
         if (!data || !data.trim()) {
-            alert('Please add some content first')
+            showToast('Please add some content first', 'warning')
             return
         }
         setAiModalOpen(true)

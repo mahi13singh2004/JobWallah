@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import AIModal from '../AIModal'
+import { useToastContext } from '../../../context/ToastContext'
 
 const ExperienceEditor = ({ data, onChange }) => {
+    const { showToast } = useToastContext()
     const [aiModalOpen, setAiModalOpen] = useState(false)
     const [currentExpIndex, setCurrentExpIndex] = useState(null)
     const [currentContent, setCurrentContent] = useState('')
@@ -16,7 +18,7 @@ const ExperienceEditor = ({ data, onChange }) => {
     const handleAIClick = (expIndex) => {
         const allBullets = data[expIndex].bullets.filter(b => b.trim()).join('. ')
         if (!allBullets) {
-            alert('Please add some content first')
+            showToast('Please add some content first', 'warning')
             return
         }
         setCurrentExpIndex(expIndex)

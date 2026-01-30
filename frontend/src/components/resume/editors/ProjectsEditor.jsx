@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import AIModal from '../AIModal'
+import { useToastContext } from '../../../context/ToastContext'
 
 const ProjectsEditor = ({ data, onChange }) => {
+    const { showToast } = useToastContext()
     const [aiModalOpen, setAiModalOpen] = useState(false)
     const [currentProjIndex, setCurrentProjIndex] = useState(null)
     const [currentContent, setCurrentContent] = useState('')
@@ -16,7 +18,7 @@ const ProjectsEditor = ({ data, onChange }) => {
     const handleAIClick = (projIndex) => {
         const allBullets = data[projIndex].bullets.filter(b => b.trim()).join('. ')
         if (!allBullets) {
-            alert('Please add some content first')
+            showToast('Please add some content first', 'warning')
             return
         }
         setCurrentProjIndex(projIndex)
