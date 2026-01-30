@@ -78,7 +78,7 @@ const WakeUpLoader = ({ onBackendReady }) => {
                 <div className="mt-8 p-4 bg-gray-800/50 rounded-lg max-w-md mx-auto">
                     <p className="text-sm text-gray-300">
                         💡 <strong>Did you know?</strong> This happens because Render puts free services to sleep after inactivity.
-                        Once awake, your app will be lightning fast!
+                        Once awake, My app will be lightning fast!
                     </p>
                 </div>
             </div>
