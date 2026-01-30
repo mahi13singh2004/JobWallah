@@ -57,7 +57,7 @@ const WakeUpLoader = ({ onBackendReady }) => {
                     </h2>
 
                     <p className="text-gray-300 max-w-md mx-auto leading-relaxed">
-                        Our backend is starting up on Render. This usually takes up to 60 seconds on the first load.
+                        The backend is starting up on Render. This usually takes up to 60 seconds on the first load.
                     </p>
 
                     <div className="text-sm text-gray-400 space-y-2">
