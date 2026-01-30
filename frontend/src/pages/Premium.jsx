@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import usePaymentStore from '../store/payment.store'
-import useAuthStore from '../store/auth.store'
+import usePaymentStore from '../store/payment.store.js'
+import useAuthStore from '../store/auth.store.js'
 import { useToast } from '../hooks/useToast'
 
 const Premium = () => {
