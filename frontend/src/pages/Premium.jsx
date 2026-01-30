@@ -132,7 +132,7 @@ const Premium = () => {
                         </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-green-600 to-emerald-700 rounded-lg p-8 text-white relative">
+                    <div className="bg-linear-to-br from-green-600 to-emerald-700 rounded-lg p-8 text-white relative">
                         <div className="absolute top-4 right-4 bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-semibold">
                             POPULAR
                         </div>
