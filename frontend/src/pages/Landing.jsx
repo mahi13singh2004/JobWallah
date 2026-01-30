@@ -64,7 +64,7 @@ const Landing = () => {
 
           <div className="w-full lg:w-3/5 flex items-center justify-center lg:min-h-125">
             <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
-              <img src="/src/assets/Home.png" alt="Home Image" className="w-full h-auto object-contain" />
+              <img src="/assets/Home.png" alt="Home Image" className="w-full h-auto object-contain" />
             </div>
           </div>
         </div>

@@ -108,7 +108,7 @@ const Signup = () => {
 
       {/* Desktop Logo */}
       <div className="hidden lg:flex w-4/7 items-center justify-center">
-        <img src="/src/assets/logo.png" alt="Logo" className="w-0.99 h-4/5" />
+        <img src="/assets/logo.png" alt="Logo" className="w-0.99 h-4/5" />
       </div>
     </div>
   )

@@ -28,7 +28,7 @@ const Navbar = () => {
         <div className="flex justify-between sm:justify-between items-center h-16 sm:h-20">
           {/* Logo - hidden on mobile */}
           <Link to="/" className="hidden sm:flex items-center space-x-2">
-            <img src="/src/assets/logo.png" alt="Logo" className="h-16 sm:h-22" />
+            <img src="/assets/logo.png" alt="Logo" className="h-16 sm:h-22" />
           </Link>
 
           {/* Home button - centered on mobile, absolute positioned on desktop */}
