@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import AIModal from '../AIModal'
-import { useToastContext } from '../../../context/ToastContext'
+import { useToastStore } from '../../../store/toast.store'
 
 const ProjectsEditor = ({ data, onChange }) => {
-    const { showToast } = useToastContext()
+    const { showToast } = useToastStore()
     const [aiModalOpen, setAiModalOpen] = useState(false)
     const [currentProjIndex, setCurrentProjIndex] = useState(null)
     const [currentContent, setCurrentContent] = useState('')

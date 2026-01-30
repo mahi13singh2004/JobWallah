@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useAIAnalysisStore } from '../store/aiAnalysis.store'
-import { useToastContext } from '../context/ToastContext'
+import { useToastStore } from '../store/toast.store'
 
 const Analysis = () => {
     const { analyzeResume, analysis, loading, clearAnalysis } = useAIAnalysisStore()
-    const { showToast } = useToastContext()
+    const { showToast } = useToastStore()
     const [resumeFile, setResumeFile] = useState(null)
     const [jobDescription, setJobDescription] = useState('')
     const [fileName, setFileName] = useState('')

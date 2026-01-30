@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useAISuggestionsStore } from '../../store/aiSuggestions.store'
-import { useToastContext } from '../../context/ToastContext'
+import { useToastStore } from '../../store/toast.store'
 
 const AIModal = ({ isOpen, onClose, content, onApply, type = 'bullets' }) => {
     const { improveContent, improveSummary, loading } = useAISuggestionsStore()
-    const { showToast } = useToastContext()
+    const { showToast } = useToastStore()
     const [numberOfPoints, setNumberOfPoints] = useState(3)
     const [improvedContent, setImprovedContent] = useState(null)
 

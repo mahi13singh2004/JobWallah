@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import AIModal from '../AIModal'
-import { useToastContext } from '../../../context/ToastContext'
+import { useToastStore } from '../../../store/toast.store'
 
 const SummaryEditor = ({ data, onChange }) => {
-    const { showToast } = useToastContext()
+    const { showToast } = useToastStore()
     const [showSection, setShowSection] = useState(!!data)
     const [aiModalOpen, setAiModalOpen] = useState(false)
 

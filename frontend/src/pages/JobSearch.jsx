@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useJobSearchStore } from '../store/jobSearch.store.js';
-import { useToastContext } from '../context/ToastContext.jsx';
+import { useToastStore } from '../store/toast.store.js';
 
 const JobSearch = () => {
     const { jobs, isLoading, searchesRemaining, searchJobs } = useJobSearchStore();
-    const { showToast } = useToastContext();
+    const { showToast } = useToastStore();
     const [formData, setFormData] = useState({
         keyword: '',
         location: '',

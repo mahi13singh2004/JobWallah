@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { usePaymentStore } from '../store/payment.store.js'
 import { useAuthStore } from '../store/auth.store.js'
-import { useToastContext } from '../context/ToastContext.jsx'
+import { useToastStore } from '../store/toast.store.js'
 
 const Premium = () => {
     const [isProcessing, setIsProcessing] = useState(false)
     const { createOrder, verifyPayment, isLoading, error } = usePaymentStore()
     const { user, checkAuth } = useAuthStore()
-    const { showToast } = useToastContext()
+    const { showToast } = useToastStore()
     const navigate = useNavigate()
 
     useEffect(() => {

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../store/auth.store'
 import { useResumeStore } from '../store/resume.store'
-import { useToastContext } from '../context/ToastContext'
+import { useToastStore } from '../store/toast.store'
 import ResumePreview from '../components/resume/ResumePreview'
 import BasicDetailsEditor from '../components/resume/editors/BasicDetailsEditor'
 import SummaryEditor from '../components/resume/editors/SummaryEditor'
@@ -15,7 +15,7 @@ import AchievementsEditor from '../components/resume/editors/AchievementsEditor'
 const Resume = () => {
     const { user } = useAuthStore()
     const { downloadResume, createResume, updateResume } = useResumeStore()
-    const { showToast } = useToastContext()
+    const { showToast } = useToastStore()
     const location = useLocation()
     const navigate = useNavigate()
 

@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import WakeUpLoader from './components/WakeUpLoader'
+import ToastContainer from './components/ToastContainer'
 import Landing from "./pages/Landing"
 import Profile from "./pages/Profile"
 import Login from "./pages/Login"
@@ -54,8 +55,11 @@ const App = () => {
         <Route path="/job-search" element={<JobSearch />} />
         <Route path="/premium" element={<Premium />} />
       </Routes>
+      <ToastContainer />
     </>
   )
 }
+
+export default App
 
 export default App
