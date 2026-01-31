@@ -9,22 +9,36 @@ A full-stack career productivity platform built with ❤️ using the **MERN sta
 ## 🛠 Tech Stack
 
 ### 🖥️ Frontend
-- **React**
-- **Tailwind CSS**
-- **Zustand** (State Management)
-- **Axios** (API communication)
+- **React** – Component-based UI
+- **Tailwind CSS** – Utility-first styling
+- **Zustand** – Lightweight global state management
+- **Axios** – API communication with cookie support
 
 ### 🧠 Backend
-- **Node.js + Express**
-- **MongoDB (Mongoose)**
-- **Cookie-based Authentication**
-- **AI Skill Matching Engine** (Custom matcher logic)
+- **Node.js + Express** – REST API server
+- **MongoDB + Mongoose** – Database & schema modeling
+- **JWT Authentication** – Secure user sessions (cookie-based)
+- **bcrypt** – Password hashing & security
+- **Cookie-parser** – HTTP-only cookie handling
+- **Google Generative AI (Gemini)** – AI-powered analysis & suggestions
 
-### 🌐 Others
-- **HTTP-only Cookies** for Auth
-- **Multer** (future-ready for uploads)
+### 🔍 Job Discovery & Automation
+- **LinkedIn Jobs API** – Job search aggregation
+- **node-cron** – Scheduled background tasks (cleanup, sync jobs)
+
+### 📄 File & Document Handling
+- **Multer** – File upload handling
+- **PDFKit** – Dynamic PDF generation (resumes, reports)
+
+### ✉️ Communication & Payments
+- **Nodemailer** – Email notifications
+- **Razorpay** – Subscription & premium plan payments
+
+### 🌐 Infrastructure & Architecture
+- **CORS** – Secure cross-origin requests
+- **dotenv** – Environment configuration
+- **RESTful API design**
 - **Modular MVC Architecture**
-- **RESTful APIs**
 
 ---
 
@@ -72,6 +86,9 @@ A full-stack career productivity platform built with ❤️ using the **MERN sta
   - Interview stage tracking
   - Referral info & notes
 - Update application progress anytime
+- **Plan-based limits**:
+  - Free plan: up to **3 job searches per 24 hours**
+  - Premium plan: **Unlimited job searches**
 
 ---
 
