@@ -26,7 +26,7 @@ export const createOrder = async (req, res) => {
 
         const userId = req.user.id || req.user._id
         const options = {
-            amount: 2900,
+            amount: 12900,
             currency: "INR",
             receipt: `receipt_${Date.now()}`,
             notes: {
@@ -80,7 +80,7 @@ export const verifyPayment = async (req, res) => {
                 userId: req.user.id,
                 razorpayOrderId: razorpay_order_id,
                 razorpayPaymentId: razorpay_payment_id,
-                amount: 29,
+                amount: 129,
                 currency: "INR",
                 plan: "premium_lifetime"
             })
