@@ -1,4 +1,4 @@
-# 🧠 JobWallah – Your Smart Job & Resume Companion 💼✨
+# 🧠 JobWallah – Your Path To Career Success💼✨
 
 > **Build better resumes. Match smarter. Apply faster.**
 
@@ -60,7 +60,7 @@ A full-stack career productivity platform built with ❤️ using the **MERN sta
   - Company
   - Location
   - Apply link
-  
+
 ---
 
 ### 📊 4. Job Tracker (Application Management)
