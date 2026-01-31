@@ -73,7 +73,7 @@ const Landing = () => {
       <div className="relative z-10 pt-3 sm:pt-4 pb-8 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-5 sm:mb-8 lg:mb-12">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">🚀 Powerful Features</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4"> Powerful Features</h2>
             <p className="text-gray-400 text-sm sm:text-base lg:text-lg mb-2">Everything you need to land your dream job</p>
             <p className="text-gray-500 text-xs sm:text-sm lg:text-base max-w-3xl mx-auto px-2">
               From AI-powered resume building to smart job tracking, our comprehensive suite of tools
