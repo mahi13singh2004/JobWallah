@@ -51,7 +51,6 @@ A full-stack career productivity platform built with ❤️ using the **MERN sta
   - **Match score calculation** 📊
   - **Missing skills detection** ❌
   - **Improvement suggestions** ✅
-- History of analyzed jobs saved per user
 
 ---
 
@@ -61,9 +60,7 @@ A full-stack career productivity platform built with ❤️ using the **MERN sta
   - Company
   - Location
   - Apply link
-- Save interesting jobs for later
-- Optional resume association with saved jobs
-
+  
 ---
 
 ### 📊 4. Job Tracker (Application Management)
@@ -90,12 +87,12 @@ A full-stack career productivity platform built with ❤️ using the **MERN sta
 ## 📸 SnapShots
 
 <p align="center">
+<img src="https://drive.google.com/uc?export=view&id=1wCCWgpVjY5Qd6agIYtVF596WLY0SKQ28" width="800"/>
+<img src="https://drive.google.com/uc?export=view&id=1pNA-4kS2dSfNndzHglPbl6Fvre5NxbJq" width="800"/>
+<img src="https://drive.google.com/uc?export=view&id=1r1DNYyPY7onXQBldI-usCrsoO7sPy7_r" width="800"/>
   <img src="https://drive.google.com/uc?export=view&id=1rcEGhUg4ISqDMLLLPrIdwlVxJ5i6D3RK" width="800"/>
-  <img src="https://drive.google.com/uc?export=view&id=1r1DNYyPY7onXQBldI-usCrsoO7sPy7_r" width="800"/>
   <img src="https://drive.google.com/uc?export=view&id=1fHv9ruuLUnAFnwsa7i29bXzU9XxIjI3y" width="800"/>
   <img src="https://drive.google.com/uc?export=view&id=1vl-SWiBZX-foGRRSaiirJRqUVSL1_gaD" width="800"/>
-  <img src="https://drive.google.com/uc?export=view&id=1pNA-4kS2dSfNndzHglPbl6Fvre5NxbJq" width="800"/>
-  <img src="https://drive.google.com/uc?export=view&id=1wCCWgpVjY5Qd6agIYtVF596WLY0SKQ28" width="800"/>
   <img src="https://drive.google.com/uc?export=view&id=1fwtfsU32GUjfQ5HQInhPvw77tbgJGDUn" width="800"/>
   <img src="https://drive.google.com/uc?export=view&id=1CtUVaj3YFw6Oxzh65icpK3tpmuyvQVQz" width="800"/>
 </p>
