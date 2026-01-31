@@ -2,7 +2,7 @@
 
 > **Build better resumes. Match smarter. Apply faster.**
 
-A full-stack career productivity platform built with ❤️ using the **MERN stack**, designed to help users create multiple resumes, analyze job descriptions with AI, discover jobs, and track applications — all in one place.
+A full-stack career productivity platform built using the **MERN stack**, designed to help users create multiple resumes, analyze job descriptions with AI, discover jobs, and track applications — all in one place.
 
 ---
 
