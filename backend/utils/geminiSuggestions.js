@@ -4,7 +4,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
 
 export const improveResumeContent = async (content, numberOfPoints) => {
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" })
+        const model = genAI.getGenerativeModel({ model: "gemini-3.1-flash-lite" })
 
         const prompt = `You are a professional resume writer. Improve the following content and format it as ${numberOfPoints} concise, impactful bullet points. Each point should:
 - Start with a strong action verb
@@ -33,7 +33,7 @@ Return ONLY the ${numberOfPoints} bullet points, one per line, without bullet sy
 
 export const improveSummary = async (content) => {
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" })
+        const model = genAI.getGenerativeModel({ model: "gemini-3.1-flash-lite" })
 
         const prompt = `You are a professional resume writer. Improve the following professional summary to make it more impactful, concise, and ATS-friendly. Keep it to 2-3 sentences maximum. Focus on skills, experience, and value proposition.
 

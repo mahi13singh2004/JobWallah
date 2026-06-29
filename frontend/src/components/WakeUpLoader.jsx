@@ -36,49 +36,43 @@ const WakeUpLoader = ({ onBackendReady }) => {
     }
 
     return (
-        <div className="min-h-screen bg-linear-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center">
-            <div className="text-center space-y-8 px-4">
-                <div className="mb-8">
-                    <img src="/assets/logo.png" alt="JobWallah" className="h-20 mx-auto" />
+        <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+            <div className="text-center space-y-10 px-6 max-w-2xl">
+                <div className="mb-10">
+                    <img src="/assets/logo.png" alt="JobWallah" className="h-24 mx-auto" />
                 </div>
 
-                {/* Loading Animation */}
-                <div className="relative">
-                    <div className="w-20 h-20 mx-auto mb-6">
-                        <div className="w-full h-full border-4 border-blue-200 border-t-blue-500 rounded-full animate-spin"></div>
-                    </div>
-
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-20 border-2 border-blue-400 rounded-full animate-pulse opacity-30"></div>
+                <div className="w-16 h-16 mx-auto mb-8">
+                    <div className="w-full h-full border-4 border-gray-700 border-t-gray-400 rounded-full animate-spin"></div>
                 </div>
 
-                <div className="space-y-4">
-                    <h2 className="text-2xl font-bold text-white">
+                <div className="space-y-6">
+                    <h2 className="text-3xl font-semibold text-gray-100">
                         {status}{dots}
                     </h2>
 
-                    <p className="text-gray-300 max-w-md mx-auto leading-relaxed">
-                        The backend is starting up on Render. This usually takes up to 60 seconds on the first load.
+                    <p className="text-lg text-gray-400 leading-relaxed">
+                        The backend server is starting up. This typically takes 30-60 seconds on initial load.
                     </p>
 
-                    <div className="text-sm text-gray-400 space-y-2">
+                    <div className="text-base text-gray-500 space-y-3 pt-4">
                         <p>Time elapsed: {formatTime(timeElapsed)}</p>
-                        <p className="text-xs">Please don't refresh the page</p>
+                        <p className="text-sm">Please wait, do not refresh</p>
                     </div>
                 </div>
 
-                <div className="w-full max-w-md mx-auto">
-                    <div className="w-full bg-gray-700 rounded-full h-2">
+                <div className="w-full max-w-lg mx-auto pt-6">
+                    <div className="w-full bg-gray-800 rounded-full h-1.5">
                         <div
-                            className="bg-linear-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out"
+                            className="bg-gray-500 h-1.5 rounded-full transition-all duration-1000"
                             style={{ width: `${Math.min((timeElapsed / 60) * 100, 100)}%` }}
                         ></div>
                     </div>
                 </div>
 
-                <div className="mt-8 p-4 bg-gray-800/50 rounded-lg max-w-md mx-auto">
-                    <p className="text-sm text-gray-300">
-                        💡 <strong>Did you know?</strong> This happens because Render puts free services to sleep after inactivity.
-                        Once awake, My app will be lightning fast!
+                <div className="mt-10 p-6 bg-gray-900 border border-gray-800 rounded-lg max-w-lg mx-auto">
+                    <p className="text-base text-gray-400 leading-relaxed">
+                        Free tier services sleep after inactivity. The application will respond normally once the server is active.
                     </p>
                 </div>
             </div>
