@@ -25,23 +25,23 @@ const ReminderList = ({ reminders, onReminderUpdate }) => {
 
     if (!reminders || reminders.length === 0) {
         return (
-            <div className="bg-white/10 backdrop-blur-md rounded-lg border border-white/20 p-6">
+            <div className="bg-[#1a1a1a] border border-gray-700 rounded-lg p-4 sm:p-6">
                 <h3 className="text-lg font-semibold text-white mb-4">Reminders</h3>
-                <p className="text-gray-300">No reminders set for this application</p>
+                <p className="text-gray-300 text-sm">No reminders set for this application</p>
             </div>
         )
     }
 
     return (
-        <div className="bg-white/10 backdrop-blur-md rounded-lg border border-white/20 p-6">
+        <div className="bg-[#1a1a1a] border border-gray-700 rounded-lg p-4 sm:p-6">
             <h3 className="text-lg font-semibold text-white mb-4">Reminders</h3>
             <div className="space-y-3">
                 {reminders.map((reminder) => (
                     <div key={reminder._id} className={`p-4 rounded-lg border transition-all duration-200 ${reminder.completed
-                            ? 'bg-green-500/20 border-green-500/50'
-                            : reminder.emailSent
-                                ? 'bg-blue-500/20 border-blue-500/50'
-                                : 'bg-white/10 border-white/20'
+                        ? 'bg-green-900/30 border-green-600'
+                        : reminder.emailSent
+                            ? 'bg-blue-900/30 border-blue-600'
+                            : 'bg-[#0a0a0a] border-gray-600'
                         }`}>
                         <div className="flex justify-between items-start mb-2">
                             <h4 className={`font-medium ${reminder.completed ? 'text-green-300 line-through' : 'text-white'}`}>
@@ -52,8 +52,8 @@ const ReminderList = ({ reminders, onReminderUpdate }) => {
                                     onClick={() => handleToggleCompleted(reminder)}
                                     disabled={loading}
                                     className={`px-3 py-1 text-xs font-medium rounded transition-colors duration-200 ${reminder.completed
-                                            ? 'bg-yellow-600 hover:bg-yellow-700 text-white'
-                                            : 'bg-green-600 hover:bg-green-700 text-white'
+                                        ? 'bg-yellow-600 hover:bg-yellow-700 text-white'
+                                        : 'bg-green-600 hover:bg-green-700 text-white'
                                         }`}
                                 >
                                     {reminder.completed ? "Undo" : "Complete"}
