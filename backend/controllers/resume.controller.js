@@ -112,14 +112,12 @@ export const downloadResumePDF = async (req, res) => {
         const pageWidth = doc.page.width - 100
         let yPosition = 50
 
-        // Name - centered and bold
         doc.fontSize(18).font('Helvetica-Bold')
         const name = resumeData.personalInfo?.name || 'Your Name'
         const nameWidth = doc.widthOfString(name)
         doc.text(name, (doc.page.width - nameWidth) / 2, yPosition, { lineBreak: false })
         yPosition += 25
 
-        // Contact info - centered
         const contactInfo = []
         if (resumeData.personalInfo?.phone) contactInfo.push(resumeData.personalInfo.phone)
         if (resumeData.personalInfo?.email) contactInfo.push(resumeData.personalInfo.email)
@@ -167,7 +165,6 @@ export const downloadResumePDF = async (req, res) => {
             yPosition += 10
         }
 
-        // Summary Section
         if (resumeData.summary) {
             addSectionHeader('SUMMARY')
             doc.fontSize(10).font('Helvetica')
@@ -176,7 +173,6 @@ export const downloadResumePDF = async (req, res) => {
             yPosition += summaryHeight + 15
         }
 
-        // Education Section
         if (resumeData.education && resumeData.education.length > 0) {
             addSectionHeader('EDUCATION')
 
@@ -211,7 +207,6 @@ export const downloadResumePDF = async (req, res) => {
             yPosition += 5
         }
 
-        // Experience Section
         if (resumeData.experience && resumeData.experience.length > 0) {
             addSectionHeader('EXPERIENCE')
 
@@ -258,7 +253,6 @@ export const downloadResumePDF = async (req, res) => {
             })
         }
 
-        // Projects Section
         if (resumeData.projects && resumeData.projects.length > 0) {
             addSectionHeader('PROJECTS')
 
@@ -300,7 +294,6 @@ export const downloadResumePDF = async (req, res) => {
             })
         }
 
-        // Technical Skills Section
         if (resumeData.skills && (resumeData.skills.languages?.length > 0 || resumeData.skills.frameworks?.length > 0 || resumeData.skills.aiTools?.length > 0 || resumeData.skills.databases?.length > 0 || resumeData.skills.coreCS?.length > 0)) {
             addSectionHeader('TECHNICAL SKILLS')
 
@@ -327,7 +320,6 @@ export const downloadResumePDF = async (req, res) => {
             yPosition += 5
         }
 
-        // Achievements Section
         if (resumeData.achievements && resumeData.achievements.length > 0 && resumeData.achievements[0]) {
             addSectionHeader('ACHIEVEMENTS')
 

@@ -3,10 +3,17 @@ import crypto from "crypto"
 import User from "../models/user.model.js"
 import Payment from "../models/payment.model.js"
 
-const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID,
-    key_secret: process.env.RAZORPAY_KEY_SECRET,
-})
+// Lazy-load Razorpay instance
+let razorpay = null
+const getRazorpay = () => {
+    if (!razorpay) {
+        razorpay = new Razorpay({
+            key_id: process.env.RAZORPAY_KEY_ID,
+            key_secret: process.env.RAZORPAY_KEY_SECRET,
+        })
+    }
+    return razorpay
+}
 
 export const createOrder = async (req, res) => {
     try {
@@ -35,7 +42,7 @@ export const createOrder = async (req, res) => {
             }
         }
 
-        const order = await razorpay.orders.create(options)
+        const order = await getRazorpay().orders.create(options)
 
         await User.findByIdAndUpdate(userId, {
             razorpayOrderId: order.id

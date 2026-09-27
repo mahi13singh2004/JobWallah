@@ -4,7 +4,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
 
 export const analyzeResumeVsJD = async (resumeText, jobDescription) => {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-3.1-flash-lite" })
+    const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL || "gemini-3.1-flash-lite" })
 
     const prompt = `You are an expert ATS (Applicant Tracking System) and HR professional. Analyze how well this resume matches the job description.
 

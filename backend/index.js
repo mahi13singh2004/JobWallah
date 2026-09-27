@@ -1,5 +1,8 @@
 import express from "express"
 import dotenv from "dotenv"
+// Load environment variables FIRST before other imports
+dotenv.config()
+
 import connectDB from "./db/connectDB.js"
 import cookieParser from "cookie-parser"
 import authRoutes from "./routes/auth.route.js"
@@ -13,15 +16,30 @@ import jobSearchRoutes from "./routes/jobSearch.route.js"
 import healthRoutes from "./routes/health.route.js"
 import paymentRoutes from "./routes/payment.route.js"
 import { startReminder } from "./utils/reminder.job.js"
-
 import cors from "cors"
+
 const app = express()
-dotenv.config()
 
 app.use(express.json())
 app.use(cookieParser())
+
+// Allow both production and local origins
+const allowedOrigins = [
+    "https://jobwallah-frontend.onrender.com",
+    "http://localhost:5173",
+    "http://localhost:3000"
+]
+
 app.use(cors({
-    origin: "https://jobwallah-frontend.onrender.com",
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl)
+        if (!origin) return callback(null, true)
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    },
     credentials: true
 }))
 app.use("/api/auth", authRoutes)

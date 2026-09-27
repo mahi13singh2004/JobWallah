@@ -1,13 +1,16 @@
 import axios from "axios";
-import dotenv from "dotenv"
-dotenv.config()
-
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 const generateFromAI = async (prompt) => {
+  const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+  const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-1.5-flash";
+
+  if (!GEMINI_API_KEY) {
+    throw new Error("GEMINI_API_KEY not found in environment variables");
+  }
+
   try {
     const response = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`,
       {
         contents: [{ parts: [{ text: prompt }] }]
       }
@@ -19,7 +22,7 @@ const generateFromAI = async (prompt) => {
       emailBody: text
     };
   } catch (error) {
-    console.error("Gemini API Error:", error.message);
+    console.error("Gemini API Error:", error.response?.data || error.message);
     throw error;
   }
 };
